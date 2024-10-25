@@ -61,7 +61,8 @@ document.addEventListener("DOMContentLoaded",() => {
     const fetchLatLon = async (lat,lon) => {
                 try {
                     const response = await fetch(`/.netlify/functions/fetchLatLon?lat=${lat}&lon=${lon}`);
-                    const data = await response.json()
+                    const data = await response.body
+                    console.log(data)
                     displayWeatherData(data)
                 } catch (error) {
                     console.error(error)
@@ -74,8 +75,8 @@ document.addEventListener("DOMContentLoaded",() => {
             showPopup('No internet connection. Please check your network settings.')
         } else {
             try {
-                const response = await fetch(`/.netlify/functions/getWeather?location=${city}`);
-                const data = await response.json()
+                const response = await fetch(`/.netlify/functions/getWeather?city=${city}`);
+                const data = await response.body
                 displayWeatherData(data)
             } catch (error) {
                 console.error(error)
