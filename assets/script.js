@@ -59,9 +59,8 @@ document.addEventListener("DOMContentLoaded",() => {
 
     // getting the user's weather data based on latitude and longitude
     const fetchLatLon = async (lat,lon) => {
-                const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`
                 try {
-                    const response = await fetch(apiUrl)
+                    const response = await fetch(`/.netlify/functions/fetchLatLon?lat=${lat}&lon=${lon}`);
                     const data = await response.json()
                     displayWeatherData(data)
                 } catch (error) {
@@ -74,9 +73,8 @@ document.addEventListener("DOMContentLoaded",() => {
         if(!navigator.onLine){
             showPopup('No internet connection. Please check your network settings.')
         } else {
-            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
             try {
-                const response = await fetch(apiUrl)
+                const response = await fetch(`/.netlify/functions/getWeather?location=${city}`);
                 const data = await response.json()
                 displayWeatherData(data)
             } catch (error) {

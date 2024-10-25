@@ -1,0 +1,15 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "WeatherMirror is a web application that provides real-time weather information based on user input or geolocation. Utilizing the OpenWeather API and IP address location detection, it retrieves essential data like temperature, humidity, and wind speed, all presented in a user-friendly interface for easy access to weather conditions.W",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
