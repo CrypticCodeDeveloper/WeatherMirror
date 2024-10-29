@@ -1,8 +1,6 @@
 // functions/fetchData.js
 exports.handler = async ( ) => {
 
-    const { default: fetch } = await import('node-fetch');
-
     try {
         const response = await fetch(`http://ip-api.com/json/`);
         const data = await response.json();

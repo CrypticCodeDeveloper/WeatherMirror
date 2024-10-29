@@ -5,8 +5,6 @@ exports.handler = async (event) => {
     const apiKey = process.env.WEATHER_API_KEY
     const {lat, lon} = event.queryStringParameters
 
-    const { default: fetch } = await import('node-fetch');
-
     try {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`);
         const data = await response.json();
