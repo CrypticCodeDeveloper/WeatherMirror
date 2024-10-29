@@ -1,4 +1,5 @@
 [build]
+    command = "npm install node-fetch"
     functions = "functions/"
     node_bundler = "esbuild"  # Ensures that dependencies like node-fetch are bundled
 
