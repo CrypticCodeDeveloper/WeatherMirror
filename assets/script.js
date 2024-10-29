@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded",() => {
 
     const getLocation = async () => {
         try {
-            const response = await fetch('http://ip-api.com/json/')
+            const response = await fetch('//ip-api.com/json/')
             const json = await response.json()
             const {country, lat, lon} = json
             fetchLatLon(lat, lon)
