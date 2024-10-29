@@ -1,28 +1,9 @@
 
 document.addEventListener("DOMContentLoaded",() => {
 
-    const apiKey = ''
     const searchBtn = document.getElementById('search-btn')
     const cityInput = document.getElementById('city-input')
     const popup = document.getElementById('popup')
-
-    async function getData() {
-        try {
-            // Fetch the function from the functions directory
-            const response = await fetch('/.netlify/functions/fetchWeather?city=china');
-
-            if (!response.ok) throw new Error('Network response was not ok');
-
-            const data = await response.json();
-            console.log(data);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    }
-
-    // Call the function to fetch data
-    getData();
-
 
      // check internet connection
      if(!navigator.onLine){
@@ -77,7 +58,7 @@ document.addEventListener("DOMContentLoaded",() => {
     // getting the user's weather data based on latitude and longitude
     const fetchLatLon = async (lat,lon) => {
                 try {
-                    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`);
+                    const response = await fetch(`/.netlify/functions/fetchLatLon?lat=${lat}&lon=${lon}`);
                     const data = await response.json()
                     displayWeatherData(data)
                 } catch (error) {
@@ -91,7 +72,7 @@ document.addEventListener("DOMContentLoaded",() => {
             showPopup('No internet connection. Please check your network settings.')
         } else {
             try {
-                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`);
+                const response = await fetch(`/.netlify/functions/fetchWeather?city=${city}`);
                 const data = await response.json()
                 displayWeatherData(data)
             } catch (error) {
