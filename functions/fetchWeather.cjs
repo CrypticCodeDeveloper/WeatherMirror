@@ -3,7 +3,7 @@
 exports.handler = async (event) => {
     const { default: fetch } = await import('node-fetch');
 
-    const apiKey = 'your_api_key_here'; // Replace with your API key
+    const apiKey = process.env.WEATHER_API_KEY
     const {city} = event.queryStringParameters
 
     try {
@@ -12,9 +12,7 @@ exports.handler = async (event) => {
 
         return {
             statusCode: 200,
-            body: JSON.stringify({
-                city,
-            }),
+            body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*', // CORS header
