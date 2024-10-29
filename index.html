@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherMirror</title>
+    <link rel="stylesheet" href="./assets/styles.css">
+    <link rel="shortcut icon" href="./assets/images/weathermirror_logo.png" type="image/x-icon">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <h1 class="city"><i class="fa-solid fa-location-dot">&nbsp;</i><span id="country">Country</span></h1>
+        <p class="greetings" id="greetings">Good Day</p>
+        <div class="socials">
+            <!-- LinkedIn -->
+            <button class="Btn" id="linkedinBtn">
+              <span class="svgContainer">
+                <svg
+                  viewBox="0 0 448 512"
+                  height="1.6em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="svgIcon"
+                  fill="white"
+                >
+                  <path
+                    d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"
+                  ></path>
+                </svg>
+              </span>
+              <span class="BG"></span>
+            </button>
+            <!-- Github -->
+            <button class="Btn" id="gitBtn">
+            <span class="svgContainer">
+                <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            height="1.6em"
+            fill="white"
+            class="svgIcon"
+            >
+            <path
+                d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.66-.22.66-.48v-1.71c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.63.07-.62.07-.62 1.01.07 1.54 1.04 1.54 1.04.89 1.53 2.34 1.09 2.91.83.09-.64.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.28.1-2.67 0 0 .84-.27 2.75 1.02A9.64 9.64 0 0 1 12 6.84a9.64 9.64 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.39.2 2.41.1 2.67.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.67-4.57 4.92.36.31.68.91.68 1.84v2.73c0 .26.16.58.67.48A9.996 9.996 0 0 0 12 2z"
+            />
+            </svg>
+
+            </span>
+            <span class="BG git"></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="intro-content">
+        <!-- Error alert -->
+        <div class="error hide" id="popup">
+            <div class="error__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none"><path fill="#393a37" d="m13 13h-2v-6h2zm0 4h-2v-2h2zm-1-15c-1.3132 0-2.61358.25866-3.82683.7612-1.21326.50255-2.31565 1.23915-3.24424 2.16773-1.87536 1.87537-2.92893 4.41891-2.92893 7.07107 0 2.6522 1.05357 5.1957 2.92893 7.0711.92859.9286 2.03098 1.6651 3.24424 2.1677 1.21325.5025 2.51363.7612 3.82683.7612 2.6522 0 5.1957-1.0536 7.0711-2.9289 1.8753-1.8754 2.9289-4.4189 2.9289-7.0711 0-1.3132-.2587-2.61358-.7612-3.82683-.5026-1.21326-1.2391-2.31565-2.1677-3.24424-.9286-.92858-2.031-1.66518-3.2443-2.16773-1.2132-.50254-2.5136-.7612-3.8268-.7612z"></path></svg>
+            </div>
+            <div class="error__title" id="error-title">Unable to retrieve city data</div>
+            <div class="error__close" id="error-close"><svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" height="20"><path fill="#393a37" d="m15.8333 5.34166-1.175-1.175-4.6583 4.65834-4.65833-4.65834-1.175 1.175 4.65833 4.65834-4.65833 4.6583 1.175 1.175 4.65833-4.6583 4.6583 4.6583 1.175-1.175-4.6583-4.6583z"></path></svg></div>
+        </div>
+         <!--  -->
+        <span class="intro-heading-wrapper">
+            <h1>Track Weather Conditions at a Glance</h1>
+            <!-- <img src="./assets/images/wind.png" alt=""> -->
+        </span>
+        <!-- time card -->
+        <div class="card-time">
+        <p class="time-text"><span id="hours">00</span>:<span id="minutes">00</span><span class="time-sub-text" id="ampm"></span></p>
+        <p class="day-text"><span id="day-of-week"></span>, <span id="precise-date"></span></p>
+        <span id="time-icon"></span>
+        </div>
+    </div>
+
+
+    <div class="weather-content-wrapper">
+        <div class="left-info">
+            <p>Pressure: <span id="pressure">0 hPa</span></p>
+            <p>Humidity : <span id="humidity">0%</span></p>
+            <p>Sea level : <span id="sea-level">0 hPa</span></p>
+            <p>Ground level : <span id="grnd-level">0 hPa</span></p>
+            <p>Longitude : <span id="longitude">0°</span></p>
+            <p>Latitude : <span id="latitude">0°</span></p>
+        </div>
+            <!-- Weather Input and Card Wrapper-->
+        <div class="weather-input-card-wrapper">
+            <div class="input-container">
+                <input type="text" name="text" class="input" id="city-input" placeholder="search city...">
+                <span class="icon" id="search-btn">
+                  <svg width="19px" height="19px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="1" d="M14 5H20" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M14 8H17" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M22 22L20 20" stroke="#000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                </span>
+              </div>
+                  <!-- Weather Card -->
+              <div class="cardContainer">
+                <div class="card">
+                  <p class="city" id="city-name">City</p>
+                  <p class="weather" id="weather-description">weather condition</p>
+                  <div class="image">
+                      <img src="" alt="weather_icon" id="weather-icon">
+                    </div>
+                    <p class="temp" id="temp">0°C</p>
+                    <div class="minmaxContainer">
+                        <div class="min">
+                            <p class="minHeading">Min</p>
+                            <p class="minTemp" id="temp-min">0°C</p>
+                        </div>
+                        <div class="max">
+                            <p class="maxHeading">Max</p>
+                            <p class="maxTemp" id="temp-max">0°C</p>
+                        </div>
+                    </div>
+                    <p class="weather feels-like">feels like <span id="feels-like">0°C</span></p>
+                </div>
+              </div>
+        </div>
+
+  <div class="right-info">
+    <p>Wind speed: <span id="wind-speed">0 m/s</span></p>
+    <p>Wind degree : <span id="wind-deg">0°</span></p>
+    <p>Wind gust : <span id="wind-gust">0 m/s</span></p>
+    <p>Sunrise : <span id="sunrise">0:0:0 AM</span></p>
+    <p>Sunset : <span id="sunset">0:0:0 PM</span></p>
+    <p>Timezone : <span id="timezone">00 GMT</span></p>
+</div>
+    </div>
+
+    <footer>
+        <span>Developed by <a href="https://www.linkedin.com/in/abraham-bishop">Abraham Bishop</a></span>
+    </footer>
+
+</body>
+<script src="./assets/script.js" type="module"></script>
+</html>
