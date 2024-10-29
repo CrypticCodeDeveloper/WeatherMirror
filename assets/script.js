@@ -149,8 +149,6 @@ document.addEventListener("DOMContentLoaded",() => {
         const city = cityInput.value.trim()
         cityInput.value = '' // clear input field after search
 
-        console.log(typeof city)
-
         if(city){
             fetchWeatherData(city)
         } else {

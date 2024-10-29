@@ -1,7 +1,8 @@
 // functions/fetchData.js
 
+import fetch from 'node-fetch'
+
 exports.handler = async (event) => {
-    const { default: fetch } = await import('node-fetch');
 
     const apiKey = process.env.WEATHER_API_KEY
     const {city} = event.queryStringParameters
